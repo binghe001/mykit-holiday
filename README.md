@@ -9,8 +9,10 @@ QQ：2711098650
 程序的入口类为```io.mykit.holiday.core.MykitCalendar```  
 调用方法如下：  
 ```
-Element element = MykitCalendar.getCalendarDetail("2019-09-10","yyyy-MM-dd");
-Element element = MykitCalendar.getCalendarDetail(new Date());
+Element element = MykitCalendar.getCalendarDetail("2019-09-10","yyyy-MM-dd", HolidayConstants.JDK_17);
+Element element = MykitCalendar.getCalendarDetail("2019-09-10","yyyy-MM-dd", HolidayConstants.JDK_18);
+Element element = MykitCalendar.getCalendarDetail(new Date(), HolidayConstants.JDK_17);
+Element element = MykitCalendar.getCalendarDetail(new Date(), HolidayConstants.JDK_18);
 ```  
 返回的结果数据如下：  
 ```

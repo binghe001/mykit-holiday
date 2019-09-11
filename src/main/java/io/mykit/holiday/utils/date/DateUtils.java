@@ -17,6 +17,10 @@ package io.mykit.holiday.utils.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -40,6 +44,15 @@ public class DateUtils {
     public static final String DATE_DATE = "yyyyMMdd";
     public static final String LOCAL_ENGLISH_FORMAT = "dd/MMM/yyyy:hh:mm:ss Z";
 
+    /**
+     * 将Date转化为LocalDate
+     */
+    public static LocalDate parseDateToLocalDate(Date date) {
+        Instant instant = date.toInstant();
+        ZoneId zone = ZoneId.systemDefault();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zone);
+        return localDateTime.toLocalDate();
+    }
     /**
      * 判断是否是今天的日期
      */

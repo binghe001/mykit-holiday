@@ -15,6 +15,9 @@
  */
 package io.mykit.holiday.constants;
 
+import io.mykit.holiday.utils.date.DateUtils;
+
+import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
@@ -23,6 +26,22 @@ import java.util.regex.Pattern;
  * @description 节假日常量类
  */
 public class HolidayConstants {
+
+    /**
+     * jdk1.7 之前的版本调用
+     */
+    public static final String JDK_17 = "jdk_17";
+    /**
+     * jdk1.8 以及之后版本调用
+     */
+    public static final String JDK_18 = "jdk_18";
+
+    /**
+     * 获取缓存数据的Key
+     */
+    public static String getCachekey(String jdk, Date date){
+        return jdk.concat(DateUtils.parseDateToStringDate(date, DateUtils.MONTH_FORMAT));
+    }
 
     /**
      * 公历日期正则

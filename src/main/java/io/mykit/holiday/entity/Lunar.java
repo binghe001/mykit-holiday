@@ -48,9 +48,9 @@ public class Lunar extends BaseCalendar {
         SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         df3.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date3 = df3.parse("" + 1900 + "-" + 1 + "-" + 31 + " 00:00:00");
-        long time1=date.getTime();
-        long time2=date3.getTime();
-        int offset = (int)(( time1-time2) / 86400000);
+        long time1 = date.getTime();
+        long time2 = date3.getTime();
+        int offset = (int)(( time1 - time2) / 86400000);
         for (i = 1900; i < 2100 && offset > 0; i++) {
             temp = getLunarCalendarYearDays(i).intValue();
             offset -= temp;
