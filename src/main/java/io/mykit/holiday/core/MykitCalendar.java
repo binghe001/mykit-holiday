@@ -27,9 +27,8 @@ import java.util.Date;
 /**
  * @author binghe
  * @version 1.0.0
- * @description 计算农历节假日信息
+ * @description 计算日期信息
  *      Element element = MykitCalendar.getCalendarDetail("2019-09-10","yyyy-MM-dd");
- *      element = MykitCalendar.getCalendarDetail("2019-09-10","yyyy-MM-dd");
  *      element = MykitCalendar.getCalendarDetail(new Date());
  */
 public class MykitCalendar {

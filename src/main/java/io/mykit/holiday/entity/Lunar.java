@@ -26,15 +26,19 @@ import java.util.TimeZone;
 /**
  * @author binghe
  * @version 1.0.0
- * @description 月球相关的基础类
+ * @description 计算指定日期是否为闰月，年、月、日
  */
 public class Lunar extends BaseCalendar {
     private static final long serialVersionUID = -6323116565193987248L;
 
-    private  int year;
+    private int year;
     private boolean isLeap;
-    private  int month;
-    private  int day;
+    private int month;
+    private int day;
+
+    /**
+     * 计算指定日期是否为闰月，年、月、日
+     */
     public Lunar(Date objDate) throws ParseException {
         int i, leap = 0, temp = 0;
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -48,7 +52,7 @@ public class Lunar extends BaseCalendar {
         long time2=date3.getTime();
         int offset = (int)(( time1-time2) / 86400000);
         for (i = 1900; i < 2100 && offset > 0; i++) {
-            temp = lYearDays(i).intValue();
+            temp = getLunarCalendarYearDays(i).intValue();
             offset -= temp;
         }
 
@@ -66,10 +70,10 @@ public class Lunar extends BaseCalendar {
             if (leap > 0 && i == (leap + 1) && !this.isLeap) {
                 --i;
                 this.isLeap = true;
-                temp = leapDays(this.year);
+                temp = getYearLeapMonthDays(this.year);
             }
             else {
-                temp = monthDays(this.year, i);
+                temp = getYearMonthDays(this.year, i);
             }
             //解除闰月
             if (this.isLeap && i == (leap + 1)) this.isLeap = false;

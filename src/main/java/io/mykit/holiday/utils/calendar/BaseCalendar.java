@@ -28,14 +28,14 @@ import java.util.TimeZone;
 /**
  * @author binghe
  * @version 1.0.0
- * @description 条目信息
+ * @description 基础日期工具类
  */
 public class BaseCalendar implements Serializable {
     private static final long serialVersionUID = 1960277050569752154L;
     /**
      * 某年的第n个节气为几日(从0小寒起算)
      */
-    public int sTerm(int  y,int  n) throws ParseException {
+    public int getDateByFestivalFromYear(int y, int  n) throws ParseException {
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         df2.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date date = df2.parse("1900-01-06 02:05:00");
@@ -51,29 +51,43 @@ public class BaseCalendar implements Serializable {
         return utcDate;
     }
 
-    //====================================== 返回农历 y年闰哪个月 1-12 , 没闰返回 0
+    /**
+     * 返回农历 y年闰哪个月 1-12 , 没闰返回 0
+     */
     public Long leapMonth(int y) {
         long lm = HolidayConstants.LUNAR_INFO[y - 1900] & 0xf;
         return(lm == 0xf ? 0 : lm);
     }
-    //====================================== 返回农历 y年的总天数
-    public Long lYearDays(int y) {
+
+    /**
+     * 返回农历 y年的总天数
+     */
+    public Long getLunarCalendarYearDays(int y) {
         long i, sum = 348;
         for (i = 0x8000; i > 0x8; i >>= 1) sum += (HolidayConstants.LUNAR_INFO[y - 1900] & i)!=0 ? 1 : 0;
-        return(sum + leapDays(y));
+        return(sum + getYearLeapMonthDays(y));
     }
 
-    //====================================== 返回农历 y年闰月的天数
-    public int leapDays(int y) {
+
+    /**
+     * 返回农历 y年闰月的天数
+     */
+    public int getYearLeapMonthDays(int y) {
         if (leapMonth(y)!=0) return((HolidayConstants.LUNAR_INFO[y - 1899] & 0xf) == 0xf ? 30 : 29);
         else return 0;
     }
-    //====================================== 返回农历 y年m月的总天数
-    protected int monthDays(int y,int m) {
+
+    /**
+     * 返回农历 y年m月的总天数
+     */
+    protected int getYearMonthDays(int y, int m) {
         return((HolidayConstants.LUNAR_INFO[y - 1900] & (0x10000 >> m))!=0 ? 30 : 29 );
     }
-    //==============================返回公历 y年某m+1月的天数
-    public long solarDays(int y, int m) {
+
+    /**
+     * 返回公历 y年某m+1月的天数
+     */
+    public long getSolarMonthDays(int y, int m) {
         if (m == 1)
             return(((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28);
         else
@@ -86,8 +100,11 @@ public class BaseCalendar implements Serializable {
     public boolean isLeapYear(int y){
         return ((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0));
     }
-    //============================== 返回阴历 (y年,m+1月)
-    public char cyclical6(int num, int num2) {
+
+    /**
+     * 返回阴历 (y年, m+1月)
+     */
+    public char getLunarCalendar(int num, int num2) {
         if (num == 0) return(HolidayConstants.JCNAME0[num2]);
         if (num == 1) return(HolidayConstants.JCNAME1[num2]);
         if (num == 2) return(HolidayConstants.JCNAME2[num2]);
@@ -103,7 +120,10 @@ public class BaseCalendar implements Serializable {
         return '0';
     }
 
-    public String  CalConv2(int yy,int  mm,int dd,int y,int d,int m, int dt,int  nm,int nd) {
+    /**
+     * 获取日期的标签
+     */
+    public String getCalendarRemark(int yy, int  mm, int dd, int y, int d, int m, int dt, int  nm, int nd) {
         int dy = d  + dd;
         if ((yy == 0 && dd == 6) || (yy == 6 && dd == 0) || (yy == 1 && dd == 7) || (yy == 7 && dd == 1) || (yy == 2 && dd == 8) || (yy == 8 && dd == 2) || (yy == 3 && dd == 9) || (yy == 9 && dd == 3) || (yy == 4 && dd == 10) || (yy == 10 && dd == 4) || (yy == 5 && dd == 11) || (yy == 11 && dd == 5)) {
             return "<FONT color=#0000A0>日值岁破 大事不宜</font>";
@@ -121,14 +141,19 @@ public class BaseCalendar implements Serializable {
             return "0";
         }
     }
-    //============================== 传入 offsenew Datet 返回干支, 0=甲子
-    public String cyclical(long num) {
+
+    /**
+     * 传入 offsenew Datet 返回干支, 0 = 甲子
+     */
+    public String getHeavenlyAndEarthly(long num) {
         return(HolidayConstants.TIAN_GAN[(int) (num % 10)] + HolidayConstants.DI_ZHI[(int) (num % 12)]);
     }
-    //======================  中文日期
-    public String cDay(int d) {
-        String  s;
 
+    /**
+     * 中文日期
+     */
+    public String getChineseDate(int d) {
+        String  s;
         switch (d) {
             case  10:
                 s = "初十";  break;

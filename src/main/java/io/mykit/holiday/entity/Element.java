@@ -29,35 +29,35 @@ public class Element implements Serializable {
     private static final long serialVersionUID = -5931060700211084394L;
     //公历
     //公元年4位数字
-    private int sYear;
+    private int gregorianYear;
     //公元月数字
-    private int sMonth;
+    private int gregorianMonth;
     //公元日数字
-    private int sDay;
+    private int gregorianDay;
     //星期, 1个中文
     private char week;
 
     //农历
     //公元年4位数字
-    private int lYear;
+    private int lunarYear;
     //农历月数字
-    private int  lMonth;
+    private int lunarMonth;
     //农历日数字
-    private int lDay;
+    private int lunarDay;
     //是否为农历闰月?
     private boolean isLeap;
 
     //中文
-    private String lMonthChinese;
-    private String lDayChinese;
+    private String lunarMonthChinese;
+    private String lunarDayChinese;
 
     //八字
     //年柱, 2个中文
-    private String  cYear;
+    private String chineseYear;
     //月柱, 2个中文
-    private String cMonth;
+    private String chineseMonth;
     //日柱, 2个中文
-    private String cDay;
+    private String chineseDay;
     private String color;
     //是否是今天
     private boolean isToday;
@@ -75,25 +75,26 @@ public class Element implements Serializable {
     private char sgz3;
 
 
-    public Element(int sYear, int sMonth, int sDay, char week, int lYear,int  lMonth,int  lDay, boolean isLeap,String  cYear, String cMonth, String cDay, boolean isToday, boolean isLeapYear) {
+    public Element(int gregorianYear, int gregorianMonth, int gregorianDay, char week, int lunarYear,int  lunarMonth,int  lunarDay, boolean isLeap,
+                   String  chineseYear, String chineseMonth, String chineseDay, boolean isToday, boolean isLeapYear) {
         this.isToday = isToday; //是否是今天
         //公历
-        this.sYear = sYear;   //公元年4位数字
-        this.sMonth = sMonth;  //公元月数字
-        this.sDay = sDay;    //公元日数字
+        this.gregorianYear = gregorianYear;   //公元年4位数字
+        this.gregorianMonth = gregorianMonth;  //公元月数字
+        this.gregorianDay = gregorianDay;    //公元日数字
         this.week = week;    //星期, 1个中文
         //农历
-        this.lYear = lYear;   //公元年4位数字
-        this.lMonth = lMonth;  //农历月数字
-        this.lDay = lDay;    //农历日数字
+        this.lunarYear = lunarYear;   //公元年4位数字
+        this.lunarMonth = lunarMonth;  //农历月数字
+        this.lunarDay = lunarDay;    //农历日数字
         this.isLeap = isLeap;  //是否为农历闰月?
         //中文
-        this.lMonthChinese = HolidayConstants.MONTH_CHINESE[lMonth-1];
-        this.lDayChinese = HolidayConstants.DAY_CHINESE[lDay-1];
+        this.lunarMonthChinese = HolidayConstants.MONTH_CHINESE[lunarMonth-1];
+        this.lunarDayChinese = HolidayConstants.DAY_CHINESE[lunarDay-1];
         //八字
-        this.cYear = cYear;   //年柱, 2个中文
-        this.cMonth = cMonth;  //月柱, 2个中文
-        this.cDay = cDay;    //日柱, 2个中文
+        this.chineseYear = chineseYear;   //年柱, 2个中文
+        this.chineseMonth = chineseMonth;  //月柱, 2个中文
+        this.chineseDay = chineseDay;    //日柱, 2个中文
 
         this.color = "";
 
@@ -120,28 +121,28 @@ public class Element implements Serializable {
         this.sgz3 = sgz3;
     }
 
-    public int getsYear() {
-        return sYear;
+    public int getGregorianYear() {
+        return gregorianYear;
     }
 
-    public void setsYear(int sYear) {
-        this.sYear = sYear;
+    public void setGregorianYear(int gregorianYear) {
+        this.gregorianYear = gregorianYear;
     }
 
-    public int getsMonth() {
-        return sMonth;
+    public int getGregorianMonth() {
+        return gregorianMonth;
     }
 
-    public void setsMonth(int sMonth) {
-        this.sMonth = sMonth;
+    public void setGregorianMonth(int gregorianMonth) {
+        this.gregorianMonth = gregorianMonth;
     }
 
-    public int getsDay() {
-        return sDay;
+    public int getGregorianDay() {
+        return gregorianDay;
     }
 
-    public void setsDay(int sDay) {
-        this.sDay = sDay;
+    public void setGregorianDay(int gregorianDay) {
+        this.gregorianDay = gregorianDay;
     }
 
     public char getWeek() {
@@ -152,28 +153,28 @@ public class Element implements Serializable {
         this.week = week;
     }
 
-    public int getlYear() {
-        return lYear;
+    public int getLunarYear() {
+        return lunarYear;
     }
 
-    public void setlYear(int lYear) {
-        this.lYear = lYear;
+    public void setLunarYear(int lunarYear) {
+        this.lunarYear = lunarYear;
     }
 
-    public int getlMonth() {
-        return lMonth;
+    public int getLunarMonth() {
+        return lunarMonth;
     }
 
-    public void setlMonth(int lMonth) {
-        this.lMonth = lMonth;
+    public void setLunarMonth(int lunarMonth) {
+        this.lunarMonth = lunarMonth;
     }
 
-    public int getlDay() {
-        return lDay;
+    public int getLunarDay() {
+        return lunarDay;
     }
 
-    public void setlDay(int lDay) {
-        this.lDay = lDay;
+    public void setLunarDay(int lunarDay) {
+        this.lunarDay = lunarDay;
     }
 
     public boolean isLeap() {
@@ -184,28 +185,28 @@ public class Element implements Serializable {
         isLeap = leap;
     }
 
-    public String getcYear() {
-        return cYear;
+    public String getChineseYear() {
+        return chineseYear;
     }
 
-    public void setcYear(String cYear) {
-        this.cYear = cYear;
+    public void setChineseYear(String chineseYear) {
+        this.chineseYear = chineseYear;
     }
 
-    public String getcMonth() {
-        return cMonth;
+    public String getChineseMonth() {
+        return chineseMonth;
     }
 
-    public void setcMonth(String cMonth) {
-        this.cMonth = cMonth;
+    public void setChineseMonth(String chineseMonth) {
+        this.chineseMonth = chineseMonth;
     }
 
-    public String getcDay() {
-        return cDay;
+    public String getChineseDay() {
+        return chineseDay;
     }
 
-    public void setcDay(String cDay) {
-        this.cDay = cDay;
+    public void setChineseDay(String chineseDay) {
+        this.chineseDay = chineseDay;
     }
 
     public String getColor() {
@@ -248,20 +249,20 @@ public class Element implements Serializable {
         this.solarTerms = solarTerms;
     }
 
-    public String getlMonthChinese() {
-        return lMonthChinese;
+    public String getLunarMonthChinese() {
+        return lunarMonthChinese;
     }
 
-    public void setlMonthChinese(String lMonthChinese) {
-        this.lMonthChinese = lMonthChinese;
+    public void setLunarMonthChinese(String lunarMonthChinese) {
+        this.lunarMonthChinese = lunarMonthChinese;
     }
 
-    public String getlDayChinese() {
-        return lDayChinese;
+    public String getLunarDayChinese() {
+        return lunarDayChinese;
     }
 
-    public void setlDayChinese(String lDayChinese) {
-        this.lDayChinese = lDayChinese;
+    public void setLunarDayChinese(String lunarDayChinese) {
+        this.lunarDayChinese = lunarDayChinese;
     }
 
     public boolean isLeapYear() {

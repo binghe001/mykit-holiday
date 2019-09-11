@@ -34,7 +34,7 @@ public class HolidayConstants {
     public static final Pattern LUNAR_CALENDAR_PATTERN = Pattern.compile("^(\\d{2})(.{2})([\\s\\*])(.+)$");
 
     /**
-     * 月球信息数组
+     * 计算农历信息
      */
     public static final long[] LUNAR_INFO = new long[]{
             0x4bd8, 0x4ae0, 0xa570, 0x54d5, 0xd260, 0xd950, 0x5554, 0x56af, 0x9ad0, 0x55d2,
@@ -60,7 +60,7 @@ public class HolidayConstants {
             0xd520};
 
     /**
-     * 太阳月
+     * 平年每个月的天数
      */
     public static final long[] SOLAR_MONTH = new long[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -90,12 +90,12 @@ public class HolidayConstants {
     public static final int[] TERM_INFO = new int[]{0, 21208, 42467, 63836, 85337, 107014, 128867, 150921, 173149, 195551, 218072, 240693, 263343, 285989, 308563, 331033, 353350, 375494, 397447, 419210, 440795, 462224, 483532, 504758};
 
     /**
-     * 中文数字 nStr1
+     * 中文数字，对应星期信息
      */
     public static final char[] CHINESE_NUMBERS = new char[]{'日', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'};
 
     /**
-     * 农历日期 nStr2
+     * 农历日期
      */
     public static final String[] LUNAR_CALENDAR = new String[]{"初", "十", "廿", "卅", " "};
 
@@ -105,7 +105,7 @@ public class HolidayConstants {
     public static final String[] MONTH_CHINESE = new String[]{ "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二" };
 
     /**
-     * 中国日期
+     * 日期对应的中文
      */
     public static final String[] DAY_CHINESE = new String[]{"一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二","十三","十四","十五","十六","十七","十八","十九","二十","二十一","二十二","二十三","二十四","二十五","二十六","二十七","二十八","二十九","三十","三十一"};
 
@@ -123,7 +123,7 @@ public class HolidayConstants {
     public static final char[] JCNAME11 = new char[]{'除', '满', '平', '定', '执', '破', '危', '成', '收', '开', '闭', '建'};
 
     /**
-     * 公历节日  *表示放假日 sFtv
+     * 公历节日  *表示放假日， 可动态配置此数组
      */
     public static final String[] NATIONAL_HOLIDAY = new String[]{
             "0101*元旦",
@@ -226,7 +226,7 @@ public class HolidayConstants {
             "1226  **诞辰"};
 
     /**
-     * 农历节日  *表示放假日 lFtv
+     * 农历节日  *表示放假日，可动态配置此数组
      */
     public static final String[] LUNAR_HOLIDAY = new String[]{
             "0101*春节",
@@ -260,7 +260,7 @@ public class HolidayConstants {
 
 
     /**
-     * 某月的第几个星期几; 5,6,7,8 表示到数第 1,2,3,4 个星期几 wFtv
+     * 某月的第几个星期几; 5,6,7,8 表示到数第 1,2,3,4 个星期几
      */
     public static final String[] REVERSE_WEEK = new String[]{
             "0110  黑人节",
@@ -275,4 +275,25 @@ public class HolidayConstants {
             "0940  国际聋人节 世界儿童日",
             "1011  国际住房日",
             "1144  感恩节"};
+
+    /**
+     * 西安事变
+     */
+    public static final String XIAN_INCIDENT = "1212  西安事变纪念日";
+
+    /**
+     * 红色
+     */
+    public static final String COLOR_RED = "red";
+
+    /**
+     * 复活节
+     */
+    public static final String EASTER_CALENDAR = "复活节(Easter Sunday)";
+    /**
+     * 黑色星期五
+     */
+    public static final String BLACK_FRIDAY = "黑色星期五";
+
+
 }

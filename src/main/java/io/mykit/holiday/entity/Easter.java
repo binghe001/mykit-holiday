@@ -25,26 +25,29 @@ import java.util.TimeZone;
 /**
  * @author binghe
  * @version 1.0.0
- * @description 计算复活节
+ * @description 计算指定年份的距离第一次月圆最近的周日的月份和日期
  */
 public class Easter extends BaseCalendar {
     private static final long serialVersionUID = 898018543345210093L;
+    //月份
     private int month;
+    //日期
     private int date;
+
     public Easter(int y) throws ParseException {
-        int term2 = sTerm(y, 5); //取得春分日期
+        int term = getDateByFestivalFromYear(y, 5); //取得春分日期
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         df2.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date dayTerm2 = df2.parse("" +y + "-" +3 + "-" + term2 + " 00:00:00");//取得春分的公历日期控件(春分一定出现在3月)
-        Lunar lDayTerm2 = new Lunar(dayTerm2); //取得取得春分农历
+        Date dayTerm = df2.parse("" +y + "-" +3 + "-" + term + " 00:00:00");//取得春分的公历日期控件(春分一定出现在3月)
+        Lunar lDayTerm = new Lunar(dayTerm); //取得取得春分农历
         int lMlen=0;
-        if (lDayTerm2.getDay() < 15) //取得下个月圆的相差天数
-            lMlen = 15 - lDayTerm2.getDay();
+        if (lDayTerm.getDay() < 15) //取得下个月圆的相差天数
+            lMlen = 15 - lDayTerm.getDay();
         else
-            lMlen = (lDayTerm2.isLeap() ? leapDays(y) : monthDays(y, lDayTerm2.getMonth())) - lDayTerm2.getDay() + 15;
+            lMlen = (lDayTerm.isLeap() ? getYearLeapMonthDays(y) : getYearMonthDays(y, lDayTerm.getMonth())) - lDayTerm.getDay() + 15;
 
         //一天等于 1000*60*60*24 = 86400000 毫秒
-        Date l15 = new Date(dayTerm2.getTime() + 86400000 * lMlen); //求出第一次月圆为公历几日
+        Date l15 = new Date(dayTerm.getTime() + 86400000 * lMlen); //求出第一次月圆为公历几日
         Date dayEaster = new Date(l15.getTime() + 86400000 * ( 7 - l15.getDay() )); //求出下个周日
 
         this.month = dayEaster.getMonth();
